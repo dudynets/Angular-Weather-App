@@ -1,0 +1,35 @@
+<a routerLink="">Home</a>
+
+<div *ngIf="!loading; else loadingText">
+  <h3>City: {{ weatherData.city }}</h3>
+  <p>Timezone: {{ weatherData.timezone }}</p>
+
+  <hr>
+  <hr>
+
+  <h3>Current weather:</h3>
+  <p>Time: {{ weatherData.current.datetime | date:'HH:mm:ss' }}</p>
+  <p>Temperature: {{ weatherData.current.temp }} °C</p>
+  <p>Humidity: {{ weatherData.current.humidity }}%</p>
+  <p>Pressure: {{ weatherData.current.pressure }} hPa</p>
+  <p>UV index: {{ weatherData.current.uvi }}</p>
+
+  <hr>
+  <hr>
+
+  <h3>Daily weather:</h3>
+  <div *ngFor="let weatherDay of weatherData.daily">
+    <p>Date: {{ weatherDay.datetime | date:'MMM d'}}</p>
+    <p>Temperature: {{ weatherDay.temp }} °C</p>
+    <p>Humidity: {{ weatherDay.humidity }}%</p>
+    <p>Pressure: {{ weatherDay.pressure }} hPa</p>
+    <p>UV index: {{ weatherDay.uvi }}</p>
+    <hr>
+  </div>
+</div>
+
+<ng-template #loadingText>
+  <p>
+    Loading...
+  </p>
+</ng-template>
